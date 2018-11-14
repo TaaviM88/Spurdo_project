@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/tmp_scenes/Taavi.unity
-  isLoaded: 1
-  isActive: 1
