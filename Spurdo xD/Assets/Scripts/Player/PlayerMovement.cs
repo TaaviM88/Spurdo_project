@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //horizontalMove = Input.GetAxis("Horizontal") * runSpeed;    
-        //animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        horizontalMove = Input.GetAxis("Horizontal");    
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Fire1"))
         {
