@@ -13,14 +13,23 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position.y < -10)
+        {
+            PlayerDie();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            GameManager.Instance.ResetScene();
+            PlayerDie();
         }
+    }
+
+
+    void PlayerDie()
+    {
+        GameManager.Instance.ResetScene();
     }
 }

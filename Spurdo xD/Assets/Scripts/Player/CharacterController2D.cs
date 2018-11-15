@@ -6,6 +6,9 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField]
     private float m_JumpForce = 400f;
+    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField]
+    private float lowJumpMultiplier = 2f;
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;
     [Range(0, .3f)]
     [SerializeField]
@@ -69,6 +72,7 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
+
     }
 
     public void Move(float move, bool crouch, bool jump)
@@ -131,7 +135,16 @@ public class CharacterController2D : MonoBehaviour
             if (m_Grounded && jump)
             {
                 m_Grounded = false;
-                m_Rigidbody.AddForce(new Vector3(0f, m_JumpForce, 0f));
+                m_Rigidbody.AddForce(new Vector3(0f, m_JumpForce, 0f), ForceMode.Force);
+
+                if (m_Rigidbody.velocity.y < 0)
+                {
+                    m_Velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+                }
+                else if (m_Rigidbody.velocity.y > 0)
+                {
+                    m_Rigidbody.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+                }
             }
         }
     }
