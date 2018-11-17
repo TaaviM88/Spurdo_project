@@ -6,7 +6,7 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField]
     private float m_JumpForce = 400f;
-    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float fallMultiplier = 5f;
     [SerializeField]
     private float lowJumpMultiplier = 2f;
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;
@@ -22,7 +22,7 @@ public class CharacterController2D : MonoBehaviour
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded; // Whether or not the player is grounded.
-    const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
+    const float k_CeilingRadius = .05f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody m_Rigidbody;
     private bool m_FacingRight = true;
     private Vector3 m_Velocity = Vector3.zero;
@@ -72,7 +72,6 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-
     }
 
     public void Move(float move, bool crouch, bool jump)
@@ -137,14 +136,16 @@ public class CharacterController2D : MonoBehaviour
                 m_Grounded = false;
                 m_Rigidbody.AddForce(new Vector3(0f, m_JumpForce, 0f), ForceMode.Force);
 
-                if (m_Rigidbody.velocity.y < 0)
-                {
-                    m_Velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-                }
-                else if (m_Rigidbody.velocity.y > 0)
-                {
-                    m_Rigidbody.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-                }
+                
+            }
+
+            if (m_Rigidbody.velocity.y < 0)
+            {
+                m_Velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (m_Rigidbody.velocity.y > 0)
+            {
+                m_Rigidbody.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
         }
     }
@@ -154,5 +155,21 @@ public class CharacterController2D : MonoBehaviour
         m_FacingRight = !m_FacingRight;
         PlayerSprite.transform.Rotate(0, 180, 0);
         //transform.Rotate(0f, 180f, 0f);
+    }
+
+    public float FallSpeed ()
+    {
+        if (!m_Grounded && m_Rigidbody.velocity.y < 0)
+        {
+            float f = m_Rigidbody.velocity.y;
+            return f;
+        }
+        else
+            return 0;    
+    }
+
+    public bool IsPlayerOnGround()
+    {
+        return m_Grounded;
     }
 }

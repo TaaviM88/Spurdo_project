@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
         }
         else
             Instance = this;
+
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
