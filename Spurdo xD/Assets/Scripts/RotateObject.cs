@@ -8,28 +8,40 @@ public class RotateObject : MonoBehaviour
     public float rotateSpeed = 40f;
     public bool isEnemy = false;
     public Joystick joystick;
-    public bool mobileBuild = false;
+    bool mobilebuild = false;
+    //bool isEnemyActive = false;
+    //TowerScript player;
+    float playerPositionY;
     // Start is called before the first frame update
     void Start()
     {
-        if(!mobileBuild)
+        mobilebuild = GameManager.Instance.IsMobilebuild();
+       
+        if (!mobilebuild)
         {
             if(joystick == null)
             {
                 return;
             }
         }
+       /* if(isEnemy)
+        {
+            player = GetComponentInParent<TowerScript>();
+        }*/
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(mobileBuild && !isEnemy)
+        if(mobilebuild && !isEnemy)
         {
             horizontalMove = joystick.Horizontal * rotateSpeed;
         }
-        else if (!mobileBuild && !isEnemy)
-        horizontalMove = Input.GetAxis("Horizontal") * rotateSpeed;
+        else if (!mobilebuild && !isEnemy)
+        {
+            horizontalMove = Input.GetAxis("Horizontal") * rotateSpeed;
+        }
 
         if(!isEnemy)
         {
@@ -40,6 +52,14 @@ public class RotateObject : MonoBehaviour
             transform.Rotate(Vector3.up, rotateSpeed);
         }
         
-        
+       /* if(isEnemy)
+        {
+            if (transform.position.y < playerPositionY)
+            {
+                isEnemyActive = false;
+            }
+            else
+                isEnemyActive = true;
+        }*/
     }
 }

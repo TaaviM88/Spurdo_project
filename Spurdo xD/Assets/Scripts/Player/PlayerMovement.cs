@@ -15,22 +15,26 @@ public class PlayerMovement : MonoBehaviour
     bool crouch = false;
     bool playerIsOnAir = false;
     float rb_Speed = 0;
-
+    float startZPosition = 0;
     void Start()
     {
-        if (!mobileBuild)
+        startZPosition = transform.position.z;
+        if (!GameManager.Instance.IsMobilebuild())
         {
             if (joystick == null)
             {
                 return;
             }
         }
+        jump = false;
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("PlayerLands", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(mobileBuild)
+        if(GameManager.Instance.IsMobilebuild())
         {
             horizontalMove = joystick.Horizontal;
 
@@ -82,8 +86,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", false);
             animator.SetBool("PlayerLands", true);
             playerIsOnAir = false;
-            Debug.Log("osuin maahan");
+
         }
+
         
     }
 
@@ -99,7 +104,8 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
 
         jump = false;
-      
-   
+
+        //transform.position = new Vector3(transform.position.x, transform.position.y, startZPosition);
+        
     }
 }

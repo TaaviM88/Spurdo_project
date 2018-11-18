@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 571743650}
   - component: {fileID: 571743652}
   - component: {fileID: 571743651}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571743649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.023, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 7672604083736648920}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7672604082776209752}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7672604083180840288}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7672604083180840295}
   m_LocalRotation: {x: -0, y: -0.011955081, z: -0, w: 0.99992853}
-  m_LocalPosition: {x: -0.027, y: -0.448, z: -0.036}
+  m_LocalPosition: {x: -0.027, y: -0.375, z: -0.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7672604083736648920}
@@ -204,7 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: -1
-  isEnemy: 0
+  isEnemy: 1
+  joystick: {fileID: 0}
 --- !u!1 &7672604083399845436
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7672604083399845437}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CameraPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +253,8 @@ GameObject:
   - component: {fileID: 7672604083736648864}
   - component: {fileID: 8332257605041051157}
   - component: {fileID: 359754046}
-  m_Layer: 0
+  - component: {fileID: 359754053}
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 7672604083736648871}
   animator: {fileID: 571743651}
+  joystick: {fileID: 0}
   runSpeed: 40
+  mobileBuild: 0
 --- !u!114 &7672604083736648871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049e15f5f9157e4dac15ce687207923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 325
+  m_JumpForce: 360
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 1.3
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -420,7 +426,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.24
+  m_Radius: 0.18
   m_Height: 0.91
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -436,3 +442,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae87988264c5d5419e97940b4600203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletTime: 2
+--- !u!135 &359754053
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672604083736648927}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.68
+  m_Center: {x: 0, y: 0, z: 0}

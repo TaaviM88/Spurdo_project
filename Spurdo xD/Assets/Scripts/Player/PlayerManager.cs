@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    bool reduceTimeScale = false;
+    public float bulletTime = 2;
+    float countdown = 0;
+     float slowTime = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
+        countdown = bulletTime;
+        reduceTimeScale = false;
     }
 
     // Update is called once per frame
@@ -17,6 +23,16 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerDie();
         }
+
+        if(reduceTimeScale)
+        {
+            
+            if(Time.timeScale > slowTime)
+            {
+                Time.timeScale -= Time.deltaTime;
+            }
+        }
+       // Debug.Log("TimeScale: " + Time.timeScale);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,9 +43,26 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+       if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            reduceTimeScale = true;
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            reduceTimeScale = false;
+            Time.timeScale = 1;
+        }
+    }
     void PlayerDie()
     {
         GameManager.Instance.ResetScene();
     }
+
+
 }
