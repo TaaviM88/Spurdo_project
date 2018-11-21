@@ -377,22 +377,22 @@ PrefabInstance:
     - target: {fileID: 8402104718041837869, guid: f496358fab89b4448935b015ad46d45b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.15767856
+      value: 0.157673
       objectReference: {fileID: 0}
     - target: {fileID: 8402104718041837869, guid: f496358fab89b4448935b015ad46d45b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00882721
+      value: 0.012111689
       objectReference: {fileID: 0}
     - target: {fileID: 8402104718041837869, guid: f496358fab89b4448935b015ad46d45b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0014096262
+      value: -0.0019338933
       objectReference: {fileID: 0}
     - target: {fileID: 8402104718041837869, guid: f496358fab89b4448935b015ad46d45b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98745006
+      value: 0.9874152
       objectReference: {fileID: 0}
     - target: {fileID: 8402104718041837869, guid: f496358fab89b4448935b015ad46d45b,
         type: 3}
@@ -846,22 +846,22 @@ PrefabInstance:
     - target: {fileID: 4385375457371049155, guid: 6e6c7cce4d9944d4f82d2e6e2306c899,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.15767856
+      value: 0.157673
       objectReference: {fileID: 0}
     - target: {fileID: 4385375457371049155, guid: 6e6c7cce4d9944d4f82d2e6e2306c899,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00882721
+      value: 0.012111689
       objectReference: {fileID: 0}
     - target: {fileID: 4385375457371049155, guid: 6e6c7cce4d9944d4f82d2e6e2306c899,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0014096262
+      value: -0.0019338933
       objectReference: {fileID: 0}
     - target: {fileID: 4385375457371049155, guid: 6e6c7cce4d9944d4f82d2e6e2306c899,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98745006
+      value: 0.9874152
       objectReference: {fileID: 0}
     - target: {fileID: 4385375457371049155, guid: 6e6c7cce4d9944d4f82d2e6e2306c899,
         type: 3}
