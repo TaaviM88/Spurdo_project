@@ -48,7 +48,7 @@ public class TowerScript : MonoBehaviour
         }*/
         //transform.Translate(new Vector3(transform.position.x, transform.position.y + towerIndex, transform.position.z));
         //transform.Translate(new Vector3(transform.position.x, transform.position.y +50, transform.position.z));
-        transform.position = new Vector3(transform.position.x, transform.position.y + 50, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + towerIndex, transform.position.z);
         transform.Rotate(new Vector3(0, transform.rotation.y + 180, 0));
         /*Transform[] childs = GetComponentsInChildren<Transform>();
         foreach (Transform child in childs)
