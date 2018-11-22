@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 3.249, z: -10}
+  m_FollowOffset: {x: -0.5, y: 3.15, z: -7.01}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 2.72
     NearClipPlane: 0.1
     FarClipPlane: 5000
