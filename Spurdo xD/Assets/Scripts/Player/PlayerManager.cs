@@ -24,14 +24,14 @@ public class PlayerManager : MonoBehaviour
             PlayerDie();
         }
 
-        if(reduceTimeScale)
+        /*if(reduceTimeScale)
         {
             
             if(Time.timeScale > slowTime)
             {
                 Time.timeScale -= Time.deltaTime;
             }
-        }
+        }*/
        // Debug.Log("TimeScale: " + Time.timeScale);
     }
 
@@ -61,6 +61,7 @@ public class PlayerManager : MonoBehaviour
     }
     void PlayerDie()
     {
+        Score.Instance.UpdateHighScore();
         GameManager.Instance.ResetScene();
     }
 

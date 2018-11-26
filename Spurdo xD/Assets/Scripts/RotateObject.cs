@@ -12,6 +12,7 @@ public class RotateObject : MonoBehaviour
     //bool isEnemyActive = false;
     //TowerScript player;
     float playerPositionY;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,6 @@ public class RotateObject : MonoBehaviour
                 return;
             }
         }
-       /* if(isEnemy)
-        {
-            player = GetComponentInParent<TowerScript>();
-        }*/
         
     }
 
@@ -46,20 +43,18 @@ public class RotateObject : MonoBehaviour
         if(!isEnemy)
         {
             transform.Rotate(Vector3.up, horizontalMove);
+            playerPositionY = GameManager.Instance.player.transform.position.y;
+            if((transform.position.y + 40 ) < (playerPositionY ))
+            {
+                transform.position = new Vector3(0, playerPositionY, 0);
+            }
+            
         }
         else
         {
             transform.Rotate(Vector3.up, rotateSpeed);
         }
         
-       /* if(isEnemy)
-        {
-            if (transform.position.y < playerPositionY)
-            {
-                isEnemyActive = false;
-            }
-            else
-                isEnemyActive = true;
-        }*/
+      
     }
 }

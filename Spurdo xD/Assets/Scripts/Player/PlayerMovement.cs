@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     bool playerIsOnAir = false;
     float rb_Speed = 0;
     float startZPosition = 0;
+    
     void Start()
     {
         startZPosition = transform.position.z;
@@ -57,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("PlayerLands", false);
                 
             }
-            
         }
 
         /* if (Input.GetButtonDown("Crouch"))
@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
          {
              crouch = false;
          }*/
-       
 
     }
 

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //DontDestroyOnLoad(this.gameObject);
         if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
