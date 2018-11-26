@@ -44,10 +44,10 @@ public class RotateObject : MonoBehaviour
         {
             transform.Rotate(Vector3.up, horizontalMove);
             playerPositionY = GameManager.Instance.player.transform.position.y;
-            if((transform.position.y + 40 ) < (playerPositionY ))
+            /*if((transform.position.y + 40 ) < (playerPositionY ))
             {
                 transform.position = new Vector3(0, playerPositionY, 0);
-            }
+            }*/
             
         }
         else
