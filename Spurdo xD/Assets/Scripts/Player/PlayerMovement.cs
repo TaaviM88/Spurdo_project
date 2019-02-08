@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        Debug.Log(animator.GetBool("IsJumping"));
+
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 jump = true;
                 playerIsOnAir = true;
+                animator.SetTrigger("Jump");
                 animator.SetBool("IsJumping", true);
                 animator.SetBool("PlayerLands", false);
                 
@@ -68,7 +69,10 @@ public class PlayerMovement : MonoBehaviour
          {
              crouch = false;
          }*/
-
+        Vector3 pos = transform.position;
+        pos.x = 1.127f;
+        pos.z = -5.83f;
+        transform.position = pos;
     }
 
     //tsekataan onko pelaaja maassa

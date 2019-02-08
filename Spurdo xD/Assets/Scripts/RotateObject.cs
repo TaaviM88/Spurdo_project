@@ -6,7 +6,7 @@ public class RotateObject : MonoBehaviour
 {
     float horizontalMove = 0f;
     public float rotateSpeed = 40f;
-    public bool isEnemy = false;
+    public bool isEnemy = false, isGondola = false;
     public Joystick joystick;
     bool mobilebuild = false;
     //bool isEnemyActive = false;
@@ -54,6 +54,17 @@ public class RotateObject : MonoBehaviour
         {
             transform.Rotate(Vector3.up, rotateSpeed);
         }
+
+        if(isGondola)
+        {
+
+            Vector3 pos = transform.position;
+            pos.x = 0;
+            pos.y  += -1f * Time.deltaTime * rotateSpeed;
+            pos.z = 0;
+            transform.position = pos;
+        }
+            
         
       
     }
