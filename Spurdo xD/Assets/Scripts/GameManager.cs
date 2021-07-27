@@ -3,35 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace Tower
 {
-    public static GameManager Instance;
-    public GameObject player;
-    public bool mobileBuild = false;
-    // Start is called before the first frame update
-    void Awake()
+    public class GameManager : MonoBehaviour
     {
-        //DontDestroyOnLoad(this.gameObject);
-        if (Instance != null && Instance != this)
+        public static GameManager Instance;
+        public GameObject player;
+        public bool mobileBuild = false;
+        public int frameRate = 60;
+        // Start is called before the first frame update
+        void Awake()
         {
-            Destroy(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+                Instance = this;
+
+            Time.timeScale = 1f;
+            Application.targetFrameRate = frameRate;
         }
-        else
-            Instance = this;
 
-        Time.timeScale = 1f;
-    }
+        public void ResetScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
- 
-
-    public void ResetScene()
-    {
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public bool IsMobilebuild()
-    {
-        return mobileBuild;
+        public bool IsMobilebuild()
+        {
+            return mobileBuild;
+        }
     }
 }

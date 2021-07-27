@@ -39,7 +39,7 @@ public class PickUpItem : MonoBehaviour
         {
             AddPoint();
             EnableObject(false);
-            Debug.Log("ES got");
+            //Debug.Log("ES got");
         }
     }
 

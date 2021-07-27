@@ -1,51 +1,56 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+namespace Tower
+{
 
-public class AudioManager : MonoBehaviour {
 
-    public Sound[] sounds;
-
-    public static AudioManager instance;
-
-    void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        if (instance == null)
-            instance = this;
-        else
+
+        public Sound[] sounds;
+
+        public static AudioManager instance;
+
+        void Awake()
         {
-            Destroy(gameObject);
-            return;
-        }
-   
-        DontDestroyOnLoad(gameObject);
+            if (instance == null)
+                instance = this;
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
 
-        foreach (Sound s in sounds)
+            DontDestroyOnLoad(gameObject);
+
+            foreach (Sound s in sounds)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
+
+                s.source.volume = s.volume;
+                s.source.pitch = s.pitch;
+                s.source.loop = s.loop;
+            }
+        }
+
+        void Start()
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            Play("Theme");
         }
-    }
 
-    void Start()
-    {
-        Play("Theme");
-    }
-
-    public void Play (string name)
-    {
-      Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        public void Play(string name)
         {
-            Debug.LogWarning("Sound: " + name + " not found!");
-            return;
-        }
-            
-        s.source.Play();  
-    }
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found!");
+                return;
+            }
 
+            s.source.Play();
+        }
+
+    }
 }

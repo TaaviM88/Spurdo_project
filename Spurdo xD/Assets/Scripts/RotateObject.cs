@@ -1,71 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class RotateObject : MonoBehaviour
+namespace Tower
 {
-    float horizontalMove = 0f;
-    public float rotateSpeed = 40f;
-    public bool isEnemy = false, isGondola = false;
-    public Joystick joystick;
-    bool mobilebuild = false;
-    //bool isEnemyActive = false;
-    //TowerScript player;
-    float playerPositionY;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class RotateObject : MonoBehaviour
     {
-        mobilebuild = GameManager.Instance.IsMobilebuild();
-       
-        if (!mobilebuild)
+        float horizontalMove = 0f;
+        public float rotateSpeed = 40f;
+        public bool isEnemy = false, isGondola = false;
+        public Joystick joystick;
+        bool mobilebuild = false;
+        //bool isEnemyActive = false;
+        //TowerScript player;
+        float playerPositionY;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            if(joystick == null)
+            mobilebuild = GameManager.Instance.IsMobilebuild();
+
+            if (!mobilebuild)
             {
-                return;
+                if (joystick == null)
+                {
+                    return;
+                }
+            }
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (mobilebuild && !isEnemy)
+            {
+                horizontalMove = joystick.Horizontal * rotateSpeed;
+            }
+            else if (!mobilebuild && !isEnemy)
+            {
+                horizontalMove = Input.GetAxis("Horizontal") * rotateSpeed;
+            }
+
+            if (!isEnemy)
+            {
+                transform.Rotate(Vector3.up, horizontalMove);
+                playerPositionY = GameManager.Instance.player.transform.position.y;
+                /*if((transform.position.y + 40 ) < (playerPositionY ))
+                {
+                    transform.position = new Vector3(0, playerPositionY, 0);
+                }*/
+
+            }
+            else
+            {
+                transform.Rotate(Vector3.up, rotateSpeed);
+            }
+
+            if (isGondola)
+            {
+
+                Vector3 pos = transform.position;
+                pos.x = 0;
+                pos.y += -1f * Time.deltaTime * rotateSpeed;
+                pos.z = 0;
+                transform.position = pos;
             }
         }
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(mobilebuild && !isEnemy)
-        {
-            horizontalMove = joystick.Horizontal * rotateSpeed;
-        }
-        else if (!mobilebuild && !isEnemy)
-        {
-            horizontalMove = Input.GetAxis("Horizontal") * rotateSpeed;
-        }
-
-        if(!isEnemy)
-        {
-            transform.Rotate(Vector3.up, horizontalMove);
-            playerPositionY = GameManager.Instance.player.transform.position.y;
-            /*if((transform.position.y + 40 ) < (playerPositionY ))
-            {
-                transform.position = new Vector3(0, playerPositionY, 0);
-            }*/
-            
-        }
-        else
-        {
-            transform.Rotate(Vector3.up, rotateSpeed);
-        }
-
-        if(isGondola)
-        {
-
-            Vector3 pos = transform.position;
-            pos.x = 0;
-            pos.y  += -1f * Time.deltaTime * rotateSpeed;
-            pos.z = 0;
-            transform.position = pos;
-        }
-            
-        
-      
     }
 }
