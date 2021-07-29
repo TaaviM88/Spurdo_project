@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         if(parentTower != null)
         {
             //gameObject.transform.position = transform.GetComponentInParent<Transform>().transform.position;
-            gameObject.transform.position = new Vector3 ( 4f, parentTower.transform.position.y,8.62f);
+            gameObject.transform.position = startinPosition; //new Vector3 ( 4f, parentTower.transform.position.y,8.62f);
         }
        
         gameObject.transform.Rotate(startRotation.x,startRotation.y,startRotation.z);

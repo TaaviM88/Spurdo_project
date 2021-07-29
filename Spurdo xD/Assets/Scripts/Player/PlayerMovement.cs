@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Tower
 {
 
-
     public class PlayerMovement : MonoBehaviour
     {
         public CharacterController2D controller;
